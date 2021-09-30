@@ -21,7 +21,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-      - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-private-key: ${{ secrets.PRIVATE_KEY_AWS }} -> ~/test.pem
           run: |
