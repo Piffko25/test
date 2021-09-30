@@ -17,10 +17,11 @@ jobs:
     strategy:
       matrix:
         app-name: ['projectx']
-        s3-bucket: ['projectx-codedeploy-deployments1']
-        s3-filename: ['develop-aws-codedeploy']
-        deploy-group: ['develop']
     needs: build
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+      - name: Work ssh conections
+        run: |
+          pwd
+          ssh sysadmin@212.111.202.6
