@@ -1,0 +1,12 @@
+name: build-app-action
+on: 
+  push:
+    branches:
+      - master
+  deployment:
+    name: CD part
+    steps:
+      - name: ssh Conection
+        run: |
+          ssh sysadmin@212.111.202.6
+          ls -la
