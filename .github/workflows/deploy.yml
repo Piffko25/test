@@ -52,7 +52,7 @@ jobs:
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --parameters 'commands=["echo HelloWorld"]' \
-          --targets "Key=instanceids,Values=i-025779fb20401dde1" \
+          --targets '[{"Key":"InstanceIds","Values":["i-025779fb20401dde1"]}]' \
           --comment "echo HelloWorld"
       # Deploy push to S3
       - name: AWS Deploy push
