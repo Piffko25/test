@@ -23,5 +23,6 @@ jobs:
         uses: actions/checkout@v2.3.1
       - name: Work ssh conections
         run: |
-          ssh ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
-          cat /etc/hosts
+          ls -la ~/.ssh/
+          #ssh ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
+          #cat /etc/hosts
