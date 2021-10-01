@@ -21,12 +21,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-        with:
-          private-key: ${{ secrets.PRIVATE_KEY_AWS }} -> ~/test.pem
-          run: |
-            pwd
-            ls -la
-            cat ~/test.pem
-      #- name: Work ssh conections
-        #run: |
-          #ssh -i ${{ secrets.PRIVATE_KEY_AWS }} ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
+      - name: Work ssh conections
+        run: |
+          ssh ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
