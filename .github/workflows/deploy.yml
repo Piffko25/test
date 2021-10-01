@@ -2,11 +2,11 @@ name: build-app-action
 on: 
   push:
     branches:
-      - main
+      - development
 jobs:
   build:
     name: CI part
-    runs-on: centOS-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
@@ -17,12 +17,52 @@ jobs:
     strategy:
       matrix:
         app-name: ['projectx']
+        s3-bucket: ['projectx-codedeploy-deployments1']
+        s3-filename: ['develop-aws-codedeploy']
+        deploy-group: ['develop']
     needs: build
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-      - name: Work ssh conections
+      - name: Copying appspec.yml
         run: |
-          
-          ssh -i ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
-          cat /etc/hosts
+          pwd
+          ls -la
+        #run: cp appspec.yml ./bin/app
+      # copying scripts
+      #- name: Copying scripts
+       # run: cp -R ./scripts ./bin/app/scripts
+      
+      # Install AWS CLI 2
+      #- name: Install AWS CLI 2
+        #run: |
+          #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          #unzip awscliv2.zip
+          #sudo ./aws/install
+      # Configure AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+      # Deploy push to S3
+      - name: AWS Deploy push
+        run: |
+          pwd
+          ls -la
+          aws deploy push \
+          --application-name ${{ matrix.app-name }} \
+          --description "Revision of the ${{ matrix.appname }}-${{ github.sha }}" \
+          --ignore-hidden-files \
+          --s3-location s3://${{ matrix.s3-bucket }}/${{ matrix.s3-filename }}.zip \
+          --source ./
+      # Creating deployment via CodeDeploy
+      - name: Creating AWS Deployment
+        run: |
+          aws deploy create-deployment \
+          --application-name ${{ matrix.app-name }} \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --deployment-group-name ${{ matrix.deploy-group }} \
+          --file-exists-behavior OVERWRITE \
+          --s3-location bucket=${{ matrix.s3-bucket }},key=${{ matrix.s3-filename }}.zip,bundleType=zip \
