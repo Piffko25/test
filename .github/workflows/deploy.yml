@@ -40,8 +40,6 @@ jobs:
         run: |
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
-          --targets '[{"Key":"InstanceIds","Values":["i-025779fb20401dde1"]}]' \
-          --parameters '{"commands":["#!/bin/bash","yum -y update","yum install -y mc","cd /home/ec2-user","cat /etc/hosts >> /home/ec2-user/test.txt"]}'
           --targets '[{"Key":"InstanceIds","Values":["i-0bfc0ac8c777ebd0c"]}]' \
           --parameters '{"commands":["#!/bin/bash","yum -y update","yum install -y mc","cd /home/ec2-user","cat /etc/hosts >> /home/ec2-user/test.txt"]}'
       # Deploy push to S3
