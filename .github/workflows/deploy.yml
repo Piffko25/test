@@ -52,8 +52,7 @@ jobs:
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --targets '[{"Key":"InstanceIds","Values":["i-025779fb20401dde1"]}]' \
-          --parameters 'commands=["echo HelloWorld"]' \
-          --comment "echo HelloWorld"
+          --parameters '{"commands":["#!/bin/bash","yum -y update","yum install -y mc","cd /home/ec2-user"]}'
       # Deploy push to S3
       - name: AWS Deploy push
         run: |
