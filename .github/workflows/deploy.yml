@@ -41,12 +41,10 @@ jobs:
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --targets '[{"Key":"InstanceIds","Values":["i-025779fb20401dde1"]}]' \
-          --parameters '{"commands":["#!/bin/bash","yum -y update","yum install -y mc","cd /home/ec2-user"]}'
+          --parameters '{"commands":["#!/bin/bash","yum -y update","yum install -y mc","cd /home/ec2-user","cat /etc/hosts >> /home/ec2-user/test.txt"]}'
       # Deploy push to S3
       - name: AWS Deploy push
         run: |
-          pwd
-          ls -la
           aws deploy push \
           --application-name ${{ matrix.app-name }} \
           --description "Revision of the ${{ matrix.appname }}-${{ github.sha }}" \
