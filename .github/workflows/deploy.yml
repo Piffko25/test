@@ -24,3 +24,4 @@ jobs:
       - name: Work ssh conections
         run: |
           ssh ec2-user@ec2-54-194-176-160.eu-west-1.compute.amazonaws.com
+          cat /etc/hosts
