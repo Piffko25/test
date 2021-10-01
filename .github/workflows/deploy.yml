@@ -28,17 +28,6 @@ jobs:
         run: |
           pwd
           ls -la
-        #run: cp appspec.yml ./bin/app
-      # copying scripts
-      #- name: Copying scripts
-       # run: cp -R ./scripts ./bin/app/scripts
-      
-      # Install AWS CLI 2
-      #- name: Install AWS CLI 2
-        #run: |
-          #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          #unzip awscliv2.zip
-          #sudo ./aws/install
       # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
