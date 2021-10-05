@@ -36,7 +36,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
      # Run ssh 
-      - name: Test script
+      - name: Test script deploy
         run: |
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
