@@ -1,6 +1,0 @@
-PiPL version = 0x00202601
-PiPL out_flags = 0x02008025
-PiPL out_flags2 = 0x00101409
-AELookSuitePlugin::globalSetup  RunningPremiere
-RendererAPI::InitFunctionPtrs doing LoadLibrary for module MBLooks4UI_x64.dll
-RendererAPI::InitFunctionPtrs result = 0
