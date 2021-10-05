@@ -37,7 +37,7 @@ jobs:
           aws ssm send-command \
           --document-name "AWS-RunShellScript" \
           --targets '[{"Key":"InstanceIds","Values":["i-025779fb20401dde1"]}]' \
-          --parameters '{"commands":["#!/bin/bash","cd /var/www/html/test/test/","git pull origin main >> /var/log/deploy.log","sleep 2s","chown apache:apache -R /var/www/html/test/test","chmod 755 -R /var/www/html/test/test"]}'
+          --parameters '{"commands":["#!/bin/bash","cd /home/ec2-user/","sh deploy.sh"]}'
       # Deploy push to S3
       #- name: AWS Deploy push
        # run: |
