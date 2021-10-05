@@ -1,8 +1,8 @@
 name: build-app-action
-on: 
+on:
   push:
-    branches:
-      - main
+  pull_request:
+  
 jobs:
   build:
     name: CI part
