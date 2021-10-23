@@ -1,4 +1,4 @@
-name: build-app-action
+name: build-app-action-main
 on:
   workflow_dispatch:
 jobs:
